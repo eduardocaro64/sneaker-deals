@@ -119,9 +119,9 @@ function render(){
     '<div class="price"><span class="now">'+money(d.price_after_coupon)+'</span><span class="was">'+money(d.compare_at)+'</span><span class="off">−'+d.discount+'%</span></div>'+
     (d.coupon?'<div class="meta"><span>Use code '+esc(d.coupon)+(d.coupon_auto?' · from site banner, verify':'')+'</span><span>+'+money(d.shipping)+' shipping</span></div>':'<div class="meta"><span>No code needed</span><span>+'+money(d.shipping)+' shipping</span></div>')+
     '<div class="score"><div class="l"><span>Deal score</span><b>'+d.score+'/100</b></div><div class="track"><div class="fill" style="width:'+d.score+'%"></div></div></div>'+
-    '<div class="stats"><div><small>Resale value</small><strong>'+money(d.resale)+'</strong></div>'+
+    '<div class="stats"><div><small>Resale value</small><strong>'+money(d.resale)+'</strong>'+(d.resale_verified===false?'<small style="color:var(--warn)">Check StockX match</small>':'')+'</div>'+
     '<div><small>Net profit</small><strong class="pos">+$'+Math.round(d.profit)+'</strong></div>'+
-    '<div><small>ROI</small><strong>'+Math.round(d.roi)+'%</strong></div><div><small>Sold, 30 days</small><strong>'+d.sales_30d+'</strong></div></div>'+
+    '<div><small>ROI</small><strong>'+Math.round(d.roi)+'%</strong></div><div><small>Sold, 30 days</small><strong>'+(d.sales_30d>=0?d.sales_30d:'n/a')+'</strong></div></div>'+
     '<div class="acts"><button class="btn alt" data-w="'+esc(d.url)+'" aria-pressed="'+w+'">'+(w?"Watching":"Watch")+'</button>'+
     '<a class="btn alt" href="'+esc(d.stockx_url)+'" target="_blank" rel="noopener">StockX</a>'+
     '<a class="btn" href="'+esc(d.url)+'" target="_blank" rel="noopener">Buy now</a></div></article>'}).join("");

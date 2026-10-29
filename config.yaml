@@ -3,7 +3,7 @@ filters:
   min_discount: 20        # % off the "was" price
   min_profit: 20          # dollars after fees, tax and shipping
   min_roi: 20             # % return on what you pay
-  min_sales_30d: 8        # sold at least this many in 30 days (liquidity)
+  min_sales_30d: 8        # sold at least this many in 30 days (ignored when the data source has no sales counts)
   min_price: 40
   max_price: 400
   require_sku: true       # only match on exact style code (avoids wrong-shoe matches)
@@ -17,23 +17,25 @@ costs:
 
 # --- Resale price source ---------------------------------------------------
 resale:
-  type: api               # api = third-party provider with StockX data | csv = your own file
-  url: "https://REPLACE-WITH-PROVIDER/v1/stockx/products?query={sku}"
-  api_key_env: RESALE_API_KEY
+  type: apify             # Apify StockX scraper (pay per result). csv = your own file | api = subscription price API
+  actor: "rl1987/stockx-api-scraper"     # which Apify actor to call (owner/name)
+  api_key_env: RESALE_API_KEY            # your Apify API token goes in this GitHub secret
+  input: {q: "{sku}", category: sneakers, maxItems: 3}
+  cache_hours: 24         # each shoe is looked up at most once a day
+  miss_cache_hours: 72    # shoes with no StockX match are retried every 3 days
+  max_lookups_per_run: 60 # hard cap on paid lookups per scan
+  max_lookups_per_day: 150 # hard cap per day across all scans (about $0.04 each if the actor returns 50 rows)
 
 # --- Stores to scan (add as many as you like) -------------------------------
 stores:
-  - name: "Example Boutique"
+  - name: "Shoe Palace"
     type: shopify
-    base_url: "https://example-shop.com"
-    collection: sale          # or "all" / "nike" etc. to scan more than the sale page
+    base_url: "https://www.shoepalace.com"
+    collection: sale          # if the sale page doesn't load, change this to: all
     reliability: 8
-    shipping: 11.99           # what this store charges you
-    free_shipping_over: 150
-    auto_coupons: true        # also read codes from the store's homepage banner every scan (default on)
-    coupons:                  # codes you find in Discords / coupon sites; best single code is applied
-      - {code: TWENTY, amount: 25, min_spend: 100}
-      # - {code: WELCOME10, pct: 10}
+    shipping: 8.00            # PLACEHOLDER: check what they charge at checkout and change it
+    auto_coupons: true        # reads codes from their homepage banner each scan
+    coupons: []               # add known codes here, e.g. - {code: TWENTY, amount: 25, min_spend: 100}
   # - name: "Awin Feed Store"
   #   type: feed
   #   feed_url: "https://productdata.awin.com/datafeed/download/apikey/YOURKEY/..."
