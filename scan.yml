@@ -1,0 +1,31 @@
+name: Scan for deals
+on:
+  schedule:
+    - cron: "0 */3 * * *"      # every 3 hours (GitHub runs on UTC)
+  workflow_dispatch: {}         # lets you run it by hand from the Actions tab
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - name: Restore seen-deals database
+        uses: actions/cache@v4
+        with:
+          path: deals.sqlite
+          key: seen-${{ github.run_id }}
+          restore-keys: seen-
+      - run: python scanner.py
+        env:
+          RESALE_API_KEY: ${{ secrets.RESALE_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
+      - name: Publish results
+        run: |
+          git config user.name "deal-bot"; git config user.email "bot@users.noreply.github.com"
+          git add deals.json
+          git diff --cached --quiet || (git commit -m "Update deals" && git push)

@@ -1,0 +1,59 @@
+# --- What counts as a deal -------------------------------------------------
+filters:
+  min_discount: 20        # % off the "was" price
+  min_profit: 20          # dollars after fees, tax and shipping
+  min_roi: 20             # % return on what you pay
+  min_sales_30d: 8        # sold at least this many in 30 days (liquidity)
+  min_price: 40
+  max_price: 400
+  require_sku: true       # only match on exact style code (avoids wrong-shoe matches)
+
+# --- Marketplace costs: CHECK these against your current StockX seller level ---
+costs:
+  seller_fee_pct: 0.10    # approx. seller fee + payment processing
+  seller_flat_fee: 0
+  shipping: 14            # your cost to ship a sold pair
+  sales_tax: 0.095        # tax you pay when buying (LA County is about 9.5%)
+
+# --- Resale price source ---------------------------------------------------
+resale:
+  type: api               # api = third-party provider with StockX data | csv = your own file
+  url: "https://REPLACE-WITH-PROVIDER/v1/stockx/products?query={sku}"
+  api_key_env: RESALE_API_KEY
+
+# --- Stores to scan (add as many as you like) -------------------------------
+stores:
+  - name: "Example Boutique"
+    type: shopify
+    base_url: "https://example-shop.com"
+    collection: sale          # or "all" / "nike" etc. to scan more than the sale page
+    reliability: 8
+    shipping: 11.99           # what this store charges you
+    free_shipping_over: 150
+    auto_coupons: true        # also read codes from the store's homepage banner every scan (default on)
+    coupons:                  # codes you find in Discords / coupon sites; best single code is applied
+      - {code: TWENTY, amount: 25, min_spend: 100}
+      # - {code: WELCOME10, pct: 10}
+  # - name: "Awin Feed Store"
+  #   type: feed
+  #   feed_url: "https://productdata.awin.com/datafeed/download/apikey/YOURKEY/..."
+  #   columns: {title: product_name, url: aw_deep_link, price: search_price, was: rrp_price, sku: mpn, brand: brand_name, image: aw_image_url}
+  #   reliability: 9
+
+  # --- Big retailers via a scraping service (needs SCRAPER_API_KEY secret). Open each URL in a browser first to confirm it. ---
+  # fetch_url is your service's API with {key} and {url} placeholders; the line below is the ScrapingBee style.
+  # - name: "Nike Outlet"
+  #   type: scrape
+  #   fetch_url: "https://app.scrapingbee.com/api/v1/?api_key={key}&render_js=true&url={url}"
+  #   pages: ["https://www.nike.com/w/sale"]
+  #   reliability: 10
+  #   shipping: 0
+  # - {name: "JD Sports",   type: scrape, fetch_url: "https://app.scrapingbee.com/api/v1/?api_key={key}&render_js=true&url={url}", pages: ["https://www.jdsports.com/sale/"], reliability: 8}
+  # - {name: "Finish Line", type: scrape, fetch_url: "https://app.scrapingbee.com/api/v1/?api_key={key}&render_js=true&url={url}", pages: ["https://www.finishline.com/store/sale"], reliability: 8}
+  # - {name: "Champs",      type: scrape, fetch_url: "https://app.scrapingbee.com/api/v1/?api_key={key}&render_js=true&url={url}", pages: ["https://www.champssports.com/category/sale.html"], reliability: 8}
+
+alerts:
+  ntfy_topic: ""          # or set NTFY_TOPIC secret; install the free ntfy app and subscribe to the same topic
+
+db_path: deals.sqlite
+output: deals.json

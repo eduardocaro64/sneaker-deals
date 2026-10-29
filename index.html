@@ -1,0 +1,138 @@
+<title>Kicks Radar</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: sticky filter strip over a responsive grid of deal tickets; score bar is the one loud element. */
+:root{
+  --bg:#eceff2; --surface:#ffffff; --ink:#12161c; --muted:#5d6672; --line:#d5dbe1;
+  --accent:#e2381f; --accent-ink:#ffffff; --good:#12805c; --warn:#a86a00; --track:#e3e8ed;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"Barlow",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101419; --surface:#181e25; --ink:#eef1f4; --muted:#93a0ad; --line:#2a323c;
+  --accent:#ff5a3f; --accent-ink:#12161c; --good:#3ecf9b; --warn:#f0b24a; --track:#262e38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101419; --surface:#181e25; --ink:#eef1f4; --muted:#93a0ad; --line:#2a323c;
+  --accent:#ff5a3f; --accent-ink:#12161c; --good:#3ecf9b; --warn:#f0b24a; --track:#262e38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;
+  padding-block:0 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto}
+header{padding-top:20px;display:flex;flex-direction:column;gap:6px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:700;font-size:2.4rem;letter-spacing:.01em;text-transform:uppercase;margin:0;line-height:1}
+.badge{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--warn);color:var(--warn);padding:3px 8px;border-radius:3px}
+header p{margin:0;color:var(--muted);max-width:60ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;margin-top:10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:600 .85rem var(--body);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible,select:focus-visible,input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.f{display:flex;flex-direction:column;gap:3px;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);min-width:0}
+select,input[type=range]{font:500 .9rem var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 8px;min-width:0}
+input[type=range]{padding:0;accent-color:var(--accent);height:34px;width:150px;max-width:100%}
+.count{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:14px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.meta{display:flex;justify-content:space-between;gap:8px;font-size:.75rem;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.meta span:last-child{font-family:var(--mono);text-transform:none;letter-spacing:0;font-weight:500}
+.card h2{font-family:var(--display);font-size:1.45rem;font-weight:700;line-height:1.1;margin:0;text-wrap:balance}
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-family:var(--mono)}
+.now{font-size:1.7rem;font-weight:600}
+.was{color:var(--muted);text-decoration:line-through;font-size:.9rem}
+.off{background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:.8rem;padding:2px 7px;border-radius:3px}
+.score{display:flex;flex-direction:column;gap:5px}
+.score .l{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.score .l b{font-family:var(--mono);color:var(--ink);font-size:.85rem;letter-spacing:0}
+.track{height:8px;background:var(--track);border-radius:2px;overflow:hidden}
+.fill{height:100%;background:var(--accent)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.82rem;border-top:1px dashed var(--line);padding-top:10px}
+.stats div{display:flex;flex-direction:column;min-width:0}
+.stats small{color:var(--muted);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+.stats strong{font-family:var(--mono);font-weight:600}
+.pos{color:var(--good)} .neg{color:var(--warn)}
+.acts{display:flex;gap:8px;margin-top:auto}
+.btn{flex:1;text-align:center;font:600 .88rem var(--body);padding:9px 10px;border-radius:6px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);text-decoration:none;cursor:pointer}
+.btn.alt,.acts a.btn.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.alt[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.empty{padding:30px 0;color:var(--muted)}
+.how{margin-top:34px;border-top:2px solid var(--ink);padding-top:16px}
+.how h3{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;margin:0 0 8px}
+.how p{color:var(--muted);max-width:68ch;margin:0 0 12px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;padding:0;margin:0;list-style:none}
+.flow li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:11px 12px;font-size:.85rem;min-width:0}
+.flow strong{display:block;font-family:var(--mono);font-size:.78rem;margin-bottom:3px}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .3s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="top"><h1>Kicks Radar</h1><span class="badge" id="upd">Loading…</span></div>
+  <p>Deals ranked by a score that weighs discount depth, estimated resale margin, remaining sizes, and store reliability. Only shows sales that stay profitable after fees, tax and shipping, checked against resale prices.</p>
+</header>
+
+<div class="bar">
+  <div class="row" id="brands" role="group" aria-label="Brand"></div>
+  <div class="row">
+    <label class="f" for="store">Store<select id="store"></select></label>
+    <label class="f" for="sort">Sort<select id="sort">
+      <option value="score">Best score</option><option value="roi">Best ROI</option><option value="off">Biggest discount</option>
+      <option value="profit">Most profit</option><option value="price">Lowest price</option></select></label>
+    <label class="f" for="min">Min profit <span id="minv" style="font-family:var(--mono)">$20</span><input id="min" type="range" min="0" max="150" step="5" value="20"></label>
+    <button class="chip" id="watchOnly" aria-pressed="false">Watchlist only</button>
+  </div>
+</div>
+
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
+
+
+</div>
+
+<script>
+var $=function(id){return document.getElementById(id)};
+var D=[],st={brand:"All",store:"All",sort:"score",min:20,watch:false,list:[]};
+try{st.list=JSON.parse(localStorage.getItem("kr-watch")||"[]")}catch(e){}
+function save(){try{localStorage.setItem("kr-watch",JSON.stringify(st.list))}catch(e){}}
+function money(n){return "$"+Number(n).toFixed(2)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function load(){
+  fetch("deals.json",{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){
+    D=j.deals;var t=new Date(j.updated);
+    $("upd").textContent="Updated "+t.toLocaleString([], {month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" · "+j.scanned+" scanned";
+    var brands=["All"].concat(Array.from(new Set(D.map(function(d){return d.brand}).filter(Boolean))));
+    $("brands").innerHTML=brands.map(function(b){return '<button class="chip" data-b="'+esc(b)+'" aria-pressed="'+(b==="All")+'">'+esc(b)+'</button>'}).join("");
+    var stores=["All"].concat(Array.from(new Set(D.map(function(d){return d.store}))));
+    $("store").innerHTML=stores.map(function(s){return "<option>"+esc(s)+"</option>"}).join("");
+    render();
+  }).catch(function(){$("upd").textContent="No data yet";$("grid").innerHTML='<div class="empty">deals.json not found. Run the scanner once, then reload.</div>'});
+}
+function render(){
+  var r=D.filter(function(d){return (st.brand==="All"||d.brand===st.brand)&&(st.store==="All"||d.store===st.store)&&d.profit>=st.min&&(!st.watch||st.list.indexOf(d.url)>-1)});
+  r.sort(function(a,b){return st.sort==="price"?a.price-b.price:b[st.sort]-a[st.sort]});
+  $("count").textContent=r.length+" profitable deal"+(r.length===1?"":"s");
+  if(!r.length){$("grid").innerHTML='<div class="empty">Nothing matches right now. Lower the minimum profit or check back after the next scan.</div>';return}
+  $("grid").innerHTML=r.map(function(d){var w=st.list.indexOf(d.url)>-1;
+    return '<article class="card"><div class="meta"><span>'+esc(d.store)+'</span><span>'+esc(d.sku||"")+'</span></div>'+
+    '<h2>'+esc(d.title)+'</h2>'+
+    '<div class="price"><span class="now">'+money(d.price_after_coupon)+'</span><span class="was">'+money(d.compare_at)+'</span><span class="off">−'+d.discount+'%</span></div>'+
+    (d.coupon?'<div class="meta"><span>Use code '+esc(d.coupon)+(d.coupon_auto?' · from site banner, verify':'')+'</span><span>+'+money(d.shipping)+' shipping</span></div>':'<div class="meta"><span>No code needed</span><span>+'+money(d.shipping)+' shipping</span></div>')+
+    '<div class="score"><div class="l"><span>Deal score</span><b>'+d.score+'/100</b></div><div class="track"><div class="fill" style="width:'+d.score+'%"></div></div></div>'+
+    '<div class="stats"><div><small>Resale value</small><strong>'+money(d.resale)+'</strong></div>'+
+    '<div><small>Net profit</small><strong class="pos">+$'+Math.round(d.profit)+'</strong></div>'+
+    '<div><small>ROI</small><strong>'+Math.round(d.roi)+'%</strong></div><div><small>Sold, 30 days</small><strong>'+d.sales_30d+'</strong></div></div>'+
+    '<div class="acts"><button class="btn alt" data-w="'+esc(d.url)+'" aria-pressed="'+w+'">'+(w?"Watching":"Watch")+'</button>'+
+    '<a class="btn alt" href="'+esc(d.stockx_url)+'" target="_blank" rel="noopener">StockX</a>'+
+    '<a class="btn" href="'+esc(d.url)+'" target="_blank" rel="noopener">Buy now</a></div></article>'}).join("");
+}
+$("brands").addEventListener("click",function(e){var b=e.target.closest("[data-b]");if(!b)return;st.brand=b.dataset.b;
+  Array.prototype.forEach.call($("brands").children,function(c){c.setAttribute("aria-pressed",c===b)});render()});
+$("store").onchange=function(e){st.store=e.target.value;render()};
+$("sort").onchange=function(e){st.sort=e.target.value;render()};
+$("min").oninput=function(e){st.min=+e.target.value;$("minv").textContent="$"+st.min;render()};
+$("watchOnly").onclick=function(e){st.watch=!st.watch;e.currentTarget.setAttribute("aria-pressed",st.watch);render()};
+$("grid").addEventListener("click",function(e){var b=e.target.closest("[data-w]");if(!b)return;var u=b.dataset.w,i=st.list.indexOf(u);
+  if(i>-1)st.list.splice(i,1);else st.list.push(u);save();render()});
+load();
+</script>
