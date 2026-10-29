@@ -1,5 +1,37 @@
 {
- "updated": "2026-10-29T21:35:44+0000",
- "scanned": 0,
- "deals": []
+ "updated": "2026-10-29T22:29:50+0000",
+ "scanned": 1000,
+ "deals": [
+  {
+   "store": "Shoe Palace",
+   "title": "Spizike Low Grade School Basketball Shoes (Pink Gaze/Pink Gaze/White/Black)",
+   "url": "https://www.shoepalace.com/products/jordan-iq9379-630-spizike-low-grade-school-basketball-shoes-pink-gaze-pink-gaze-white-black",
+   "price": 69.97,
+   "compare_at": 130.0,
+   "sku": "IQ9379-630",
+   "brand": "JORDAN",
+   "sizes": [
+    "4Y",
+    "4.5Y",
+    "5Y",
+    "5.5Y",
+    "6Y",
+    "6.5Y",
+    "7Y"
+   ],
+   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/e5715ae82771b4bd8fe2c788f493d31f.jpg?v=1773168278",
+   "stockx_url": "https://stockx.com/search?s=IQ9379-630",
+   "price_after_coupon": 69.97,
+   "coupon": "",
+   "coupon_auto": false,
+   "shipping": 8.0,
+   "discount": 46,
+   "resale": 159.0,
+   "sales_30d": -1,
+   "resale_verified": false,
+   "profit": 44.48,
+   "roi": 52.6,
+   "score": 76
+  }
+ ]
 }
