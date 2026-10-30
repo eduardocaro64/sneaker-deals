@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T03:47:10+0000",
+ "updated": "2026-10-30T06:48:09+0000",
  "scanned": 999,
  "deals": [
   {
@@ -64,37 +64,6 @@
    "profit": 28.88,
    "roi": 27.1,
    "score": 53
-  },
-  {
-   "store": "Shoe Palace",
-   "title": "Lebron XXIII Shut Up And Dribble Grade School Basketball Shoes (Cool Grey/Black/Metallic Silver)",
-   "url": "https://www.shoepalace.com/products/nike-iv4797-002-lebron-xxiii-shut-up-and-dribble-grade-school-basketball-shoes-cool-grey-black-metallic-silver",
-   "price": 99.98,
-   "compare_at": 160.0,
-   "sku": "IV4797-002",
-   "brand": "NIKE",
-   "sizes": [
-    "4Y",
-    "4.5Y",
-    "5Y",
-    "5.5Y",
-    "6Y",
-    "6.5Y",
-    "7Y"
-   ],
-   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/aee140fb70ce241d4141906976590323.jpg?v=1776706593",
-   "stockx_url": "https://stockx.com/search?s=IV4797-002",
-   "price_after_coupon": 99.98,
-   "coupon": "",
-   "coupon_auto": false,
-   "shipping": 8.0,
-   "discount": 38,
-   "resale": 175.0,
-   "sales_30d": -1,
-   "resale_verified": false,
-   "profit": 26.02,
-   "roi": 22.2,
-   "score": 51
   }
  ]
 }
