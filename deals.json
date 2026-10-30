@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T00:49:54+0000",
+ "updated": "2026-10-30T03:47:10+0000",
  "scanned": 999,
  "deals": [
   {
@@ -32,6 +32,38 @@
    "profit": 44.48,
    "roi": 52.6,
    "score": 76
+  },
+  {
+   "store": "Shoe Palace",
+   "title": "Air Force 1 Low Cow Print Womens Lifestyle Shoes (Black/Phantom/Black)",
+   "url": "https://www.shoepalace.com/products/nike-io0442-001-air-force-1-low-cow-print-womens-lifestyle-shoes-black-phantom-black",
+   "price": 89.97,
+   "compare_at": 135.0,
+   "sku": "IO0442-001",
+   "brand": "NIKE",
+   "sizes": [
+    "6",
+    "6.5",
+    "7",
+    "7.5",
+    "8",
+    "8.5",
+    "9",
+    "10"
+   ],
+   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/4dbeb6b68e6614101f3dacd1e73c9a0f.jpg?v=1778276662",
+   "stockx_url": "https://stockx.com/search?s=IO0442-001",
+   "price_after_coupon": 89.97,
+   "coupon": "",
+   "coupon_auto": false,
+   "shipping": 8.0,
+   "discount": 33,
+   "resale": 166.0,
+   "sales_30d": -1,
+   "resale_verified": false,
+   "profit": 28.88,
+   "roi": 27.1,
+   "score": 53
   },
   {
    "store": "Shoe Palace",
