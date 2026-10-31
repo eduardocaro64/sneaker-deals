@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-30T21:31:53+0000",
- "scanned": 1000,
+ "updated": "2026-10-31T00:53:26+0000",
+ "scanned": 999,
  "deals": [
   {
    "store": "Shoe Palace",
@@ -13,7 +13,6 @@
    "sizes": [
     "4Y",
     "4.5Y",
-    "5Y",
     "5.5Y",
     "6Y",
     "6.5Y",
@@ -32,6 +31,68 @@
    "profit": 44.48,
    "roi": 52.6,
    "score": 76
+  },
+  {
+   "store": "Shoe Palace",
+   "title": "Gel-1130 Mens Lifestyle Shoes (Steel Grey/Black)",
+   "url": "https://www.shoepalace.com/products/asics-1203a609-021-gel-1130-mens-lifestyle-shoes-steel-grey-black",
+   "price": 59.96,
+   "compare_at": 100.0,
+   "sku": "1203A609-021",
+   "brand": "ASICS",
+   "sizes": [
+    "4.5",
+    "5",
+    "5.5",
+    "6",
+    "6.5",
+    "13"
+   ],
+   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/16fb15a294ac3e2ddfa5ef5b1bcbf617.jpg?v=1760121275",
+   "stockx_url": "https://stockx.com/search?s=1203A609-021",
+   "price_after_coupon": 59.96,
+   "coupon": "",
+   "coupon_auto": false,
+   "shipping": 8.0,
+   "discount": 40,
+   "resale": 127.0,
+   "sales_30d": 30,
+   "resale_verified": false,
+   "profit": 26.64,
+   "roi": 36.2,
+   "score": 70
+  },
+  {
+   "store": "Shoe Palace",
+   "title": "Air Jordan 1 Low SE Womens Lifestyle Shoes (Black/Pink Spell/White)",
+   "url": "https://www.shoepalace.com/products/jordan-ix3521-010-air-jordan-1-low-se-womens-lifestyle-shoes-black-pink-spell-white",
+   "price": 89.98,
+   "compare_at": 140.0,
+   "sku": "IX3521-010",
+   "brand": "JORDAN",
+   "sizes": [
+    "6",
+    "6.5",
+    "7",
+    "7.5",
+    "8",
+    "8.5",
+    "9",
+    "10"
+   ],
+   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/d85b37cb9ef9ea25f76befe5d133df42.jpg?v=1785433908",
+   "stockx_url": "https://stockx.com/search?s=IX3521-010",
+   "price_after_coupon": 89.98,
+   "coupon": "",
+   "coupon_auto": false,
+   "shipping": 8.0,
+   "discount": 36,
+   "resale": 191.0,
+   "sales_30d": 10,
+   "resale_verified": false,
+   "profit": 51.37,
+   "roi": 48.2,
+   "score": 62
   },
   {
    "store": "Shoe Palace",
