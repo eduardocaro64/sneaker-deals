@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T21:30:48+0000",
+ "updated": "2026-11-01T00:54:48+0000",
  "scanned": 1000,
  "deals": [
   {
@@ -65,36 +65,6 @@
   },
   {
    "store": "Shoe Palace",
-   "title": "Gel-1130 Mens Lifestyle Shoes (Steel Grey/Black)",
-   "url": "https://www.shoepalace.com/products/asics-1203a609-021-gel-1130-mens-lifestyle-shoes-steel-grey-black",
-   "price": 59.96,
-   "compare_at": 100.0,
-   "sku": "1203A609-021",
-   "brand": "ASICS",
-   "sizes": [
-    "4.5",
-    "5",
-    "5.5",
-    "6",
-    "6.5",
-    "13"
-   ],
-   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/16fb15a294ac3e2ddfa5ef5b1bcbf617.jpg?v=1760121275",
-   "stockx_url": "https://stockx.com/search?s=1203A609-021",
-   "price_after_coupon": 59.96,
-   "coupon": "",
-   "coupon_auto": false,
-   "shipping": 8.0,
-   "discount": 40,
-   "resale": 127.0,
-   "sales_30d": 30,
-   "resale_verified": false,
-   "profit": 26.64,
-   "roi": 36.2,
-   "score": 70
-  },
-  {
-   "store": "Shoe Palace",
    "title": "Dunk Low Retro Snake Mens Lifestyle Shoes (Soft Pearl/Black/Mosswood Brown/Sail)",
    "url": "https://www.shoepalace.com/products/nike-io1616-002-dunk-low-retro-snake-mens-lifestyle-shoes-soft-pearl-black-mosswood-brown-sail",
    "price": 89.98,
@@ -125,6 +95,36 @@
    "profit": 79.27,
    "roi": 74.4,
    "score": 70
+  },
+  {
+   "store": "Shoe Palace",
+   "title": "Gel-1130 Mens Lifestyle Shoes (Steel Grey/Black)",
+   "url": "https://www.shoepalace.com/products/asics-1203a609-021-gel-1130-mens-lifestyle-shoes-steel-grey-black",
+   "price": 59.96,
+   "compare_at": 100.0,
+   "sku": "1203A609-021",
+   "brand": "ASICS",
+   "sizes": [
+    "4.5",
+    "5",
+    "5.5",
+    "6",
+    "6.5",
+    "13"
+   ],
+   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/16fb15a294ac3e2ddfa5ef5b1bcbf617.jpg?v=1760121275",
+   "stockx_url": "https://stockx.com/search?s=1203A609-021",
+   "price_after_coupon": 59.96,
+   "coupon": "",
+   "coupon_auto": false,
+   "shipping": 8.0,
+   "discount": 40,
+   "resale": 127.0,
+   "sales_30d": 20,
+   "resale_verified": false,
+   "profit": 26.64,
+   "roi": 36.2,
+   "score": 62
   },
   {
    "store": "Shoe Palace",
