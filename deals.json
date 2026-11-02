@@ -1,37 +1,7 @@
 {
- "updated": "2026-11-01T21:31:51+0000",
+ "updated": "2026-11-02T00:52:40+0000",
  "scanned": 1000,
  "deals": [
-  {
-   "store": "Shoe Palace",
-   "title": "Spizike Low Grade School Basketball Shoes (Pink Gaze/Pink Gaze/White/Black)",
-   "url": "https://www.shoepalace.com/products/jordan-iq9379-630-spizike-low-grade-school-basketball-shoes-pink-gaze-pink-gaze-white-black",
-   "price": 69.97,
-   "compare_at": 130.0,
-   "sku": "IQ9379-630",
-   "brand": "JORDAN",
-   "sizes": [
-    "4Y",
-    "4.5Y",
-    "5.5Y",
-    "6Y",
-    "6.5Y",
-    "7Y"
-   ],
-   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/e5715ae82771b4bd8fe2c788f493d31f.jpg?v=1773168278",
-   "stockx_url": "https://stockx.com/search?s=IQ9379-630",
-   "price_after_coupon": 69.97,
-   "coupon": "",
-   "coupon_auto": false,
-   "shipping": 8.0,
-   "discount": 46,
-   "resale": 159.0,
-   "sales_30d": -1,
-   "resale_verified": false,
-   "profit": 44.48,
-   "roi": 52.6,
-   "score": 76
-  },
   {
    "store": "Shoe Palace",
    "title": "Dunk Low Retro Snake Mens Lifestyle Shoes (Soft Pearl/Black/Mosswood Brown/Sail)",
@@ -67,36 +37,6 @@
   },
   {
    "store": "Shoe Palace",
-   "title": "Gel-1130 Mens Lifestyle Shoes (Steel Grey/Black)",
-   "url": "https://www.shoepalace.com/products/asics-1203a609-021-gel-1130-mens-lifestyle-shoes-steel-grey-black",
-   "price": 59.96,
-   "compare_at": 100.0,
-   "sku": "1203A609-021",
-   "brand": "ASICS",
-   "sizes": [
-    "4.5",
-    "5",
-    "5.5",
-    "6",
-    "6.5",
-    "13"
-   ],
-   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/16fb15a294ac3e2ddfa5ef5b1bcbf617.jpg?v=1760121275",
-   "stockx_url": "https://stockx.com/search?s=1203A609-021",
-   "price_after_coupon": 59.96,
-   "coupon": "",
-   "coupon_auto": false,
-   "shipping": 8.0,
-   "discount": 40,
-   "resale": 127.0,
-   "sales_30d": 20,
-   "resale_verified": false,
-   "profit": 26.64,
-   "roi": 36.2,
-   "score": 62
-  },
-  {
-   "store": "Shoe Palace",
    "title": "Air Jordan 1 Low SE Womens Lifestyle Shoes (Black/Pink Spell/White)",
    "url": "https://www.shoepalace.com/products/jordan-ix3521-010-air-jordan-1-low-se-womens-lifestyle-shoes-black-pink-spell-white",
    "price": 89.98,
@@ -126,37 +66,6 @@
    "profit": 51.37,
    "roi": 48.2,
    "score": 62
-  },
-  {
-   "store": "Shoe Palace",
-   "title": "Lebron XXIII Shut Up And Dribble Grade School Basketball Shoes (Cool Grey/Black/Metallic Silver)",
-   "url": "https://www.shoepalace.com/products/nike-iv4797-002-lebron-xxiii-shut-up-and-dribble-grade-school-basketball-shoes-cool-grey-black-metallic-silver",
-   "price": 99.98,
-   "compare_at": 160.0,
-   "sku": "IV4797-002",
-   "brand": "NIKE",
-   "sizes": [
-    "4Y",
-    "4.5Y",
-    "5Y",
-    "5.5Y",
-    "6Y",
-    "6.5Y",
-    "7Y"
-   ],
-   "image": "https://cdn.shopify.com/s/files/1/0852/3376/files/aee140fb70ce241d4141906976590323.jpg?v=1776706593",
-   "stockx_url": "https://stockx.com/search?s=IV4797-002",
-   "price_after_coupon": 99.98,
-   "coupon": "",
-   "coupon_auto": false,
-   "shipping": 8.0,
-   "discount": 38,
-   "resale": 175.0,
-   "sales_30d": -1,
-   "resale_verified": false,
-   "profit": 26.02,
-   "roi": 22.2,
-   "score": 51
   }
  ]
 }
